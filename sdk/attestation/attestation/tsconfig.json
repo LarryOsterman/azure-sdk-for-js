@@ -2,8 +2,7 @@
   "extends": "../../../tsconfig.package",
   "compilerOptions": {
     "outDir": "./dist-esm",
-    "declarationDir": "./types",
-    "typeRoots": ["./src/jsrsasign"]
+    "declarationDir": "./types"
   },
   "exclude": ["node_modules", "types", "temp", "browser", "dist", "dist-esm", "./samples/**/*.ts"]
 }
