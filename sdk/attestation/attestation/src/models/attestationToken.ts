@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
+/// <reference path="./jsrsasign.d.ts"/>
 
 /*
  * Copyright (c) Microsoft Corporation.
@@ -10,7 +11,6 @@
 import { JsonWebKey } from "../generated/models";
 import { base64UrlDecodeString, hexToBase64 } from "../utils/base64";
 import { AttestationSigningKey } from "./attestationSigningKey";
-//import { KJUR, X509, RSAKey } from "../jsrsasign";
 import * as jsrsasign from "jsrsasign";
 import { bytesToString } from "../utils/utf8.browser";
 import { AttestationSigner } from "./attestationSigner";
