@@ -5,7 +5,7 @@ import { assert } from "chai";
 
 import { AttestationSigner } from "../../src/";
 
-import * as jsrsasign from "jsrsasign"; // works in the browser
+import { RSAKey, KEYUTIL, KJUR } from "../../src/jsrsasign"; // works in the browser
 
 import { decode } from "./decodeJWT";
 
@@ -52,15 +52,11 @@ export async function verifyAttestationToken(
     pemCert += encodeByteArray(signingCert[0]);
     pemCert += "\r\n-----END CERTIFICATE-----\r\n";
 
-    const pubKeyObj = jsrsasign.KEYUTIL.getKey(pemCert);
-    const isValid = jsrsasign.KJUR.jws.JWS.verifyJWT(
-      attestationToken,
-      pubKeyObj as jsrsasign.RSAKey,
-      {
-        iss: [getAttestationUri(endpointType)],
-        alg: ["RS256"]
-      }
-    );
+    const pubKeyObj = KEYUTIL.getKey(pemCert);
+    const isValid = KJUR.jws.JWS.verifyJWT(attestationToken, pubKeyObj as RSAKey, {
+      iss: [getAttestationUri(endpointType)],
+      alg: ["RS256"]
+    });
     if (!isValid) {
       throw new Error(`Verification failed! token: ${JSON.stringify(decoded)}`);
     }

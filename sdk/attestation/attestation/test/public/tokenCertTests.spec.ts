@@ -9,7 +9,7 @@ chaiUse(chaiPromises);
 import { Recorder } from "@azure/test-utils-recorder";
 
 import { createRecordedClient, createRecorder } from "../utils/recordedClient";
-import { X509 } from "jsrsasign";
+import { X509 } from "../../src/jsrsasign";
 import { encodeByteArray } from "../utils/base64url";
 import { AttestationClient } from "../../src";
 describe("TokenCertTests", function() {

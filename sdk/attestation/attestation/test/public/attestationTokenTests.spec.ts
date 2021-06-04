@@ -15,7 +15,7 @@ import { bytesToString, stringToBytes } from "../../src/utils/utf8.browser";
 import { AttestationSigningKey, AttestationToken } from "../../src";
 import { createECDSKey, createRSAKey, createX509Certificate } from "../utils/cryptoUtils";
 import { encodeByteArray } from "../utils/base64url";
-import { X509 } from "jsrsasign";
+import { X509 } from "../../src/jsrsasign";
 
 describe("AttestationTokenTests", function() {
   let recorder: Recorder;
@@ -40,7 +40,7 @@ describe("AttestationTokenTests", function() {
     assert.equal("ABCDEF", str);
   });
 
-  it("#createRsaSigningKey", async () => {
+  it.only("#createRsaSigningKey", async () => {
     const key = createRSAKey();
     const cert = createX509Certificate(key, "testCert");
     assert.isTrue(key.length !== 0);

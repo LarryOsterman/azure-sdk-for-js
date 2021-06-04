@@ -8,7 +8,7 @@ chaiUse(chaiPromises);
 
 import { Recorder } from "@azure/test-utils-recorder";
 
-import { X509 } from "jsrsasign";
+import { X509 } from "../../src/jsrsasign";
 
 import {
   createRecordedAdminClient,

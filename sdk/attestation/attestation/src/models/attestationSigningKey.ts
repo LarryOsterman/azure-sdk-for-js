@@ -7,7 +7,7 @@
  *
  */
 
-import { X509, KJUR } from "jsrsasign";
+import { X509, KJUR } from "../jsrsasign";
 
 /**
  * Creates an instance of AttestationSigningKey.
