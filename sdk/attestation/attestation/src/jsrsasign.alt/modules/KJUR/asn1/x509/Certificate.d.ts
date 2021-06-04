@@ -1,4 +1,8 @@
 declare namespace jsrsasign.KJUR.asn1.x509 {
+
+    interface X509LdapString { ldapstr: string }
+    interface X509CertSubject { certsubject: string }
+    interface X509CertIssuer { certsubject: string }
     /**
      * X.509 Certificate class to sign and generate hex encoded certificate
      * @param params associative array of parameters (ex. {'tbscertobj': obj, 'prvkeyobj': key})
@@ -27,14 +31,14 @@ declare namespace jsrsasign.KJUR.asn1.x509 {
             prvkeyobj?: RSAKey | crypto.ECDSA | crypto.DSA;
             tbscertobj?: TBSCertificate; // JSRSA v8 only.
             tbsobj?: TBSCertificate; // JSRSA > v9.
-            serial?: {hex?: string, int?: number};
-            sigalg?: {name: string};
-            issue?: {str?: string, CA?: any};
-            subject?: {str?: string, CA?: any}
-            notafter?: {str?: string};
-            notbefore?: {str?: string};
+            serial?: IntegerParam | HexParam; // JSRSA > v9
+            sigalg?: NameParam;
+            issue?: StringParam | HexParam | X509LdapString | X509CertSubject | X509CertIssuer
+            subject?: StringParam | HexParam | X509LdapString | X509CertSubject | X509CertIssuer
+            notafter?: StringParam;
+            notbefore?: StringParam;
             sbjpubkey?: RSAKey | crypto.ECDSA | crypto.DSA | string;
-            ext?: [ {extname: string, cA?: boolean, pathLen?: number, critical?: boolean} ];
+            ext?: [ {extname: string, array?: Array<any>, cA?: boolean, pathLen?: number, critical?: boolean} ];
             cakey?: RSAKey | crypto.ECDSA | crypto.DSA | string;
          });
 
@@ -57,7 +61,7 @@ declare namespace jsrsasign.KJUR.asn1.x509 {
         getEncodedHex(): string;
 
         /**
-         * get PEM formatted certificate string after signed
+         * get PEM formatted certificate string after signed - Removed in JSRSA v9.
          * @return PEM formatted string of certificate
          * @example
          * var cert = new KJUR.asn1.x509.Certificate({'tbscertobj': tbs, 'prvkeyobj': prvKey});
@@ -67,7 +71,7 @@ declare namespace jsrsasign.KJUR.asn1.x509 {
         getPEMString(): string;
 
         /**
-         * get PEM formatted certificate string - Specific to JSRSASIGN v10.x
+         * get PEM formatted certificate string - Specific to JSRSASIGN > V9
          * 
          * @return PEM formatted string of certificate
          * 
