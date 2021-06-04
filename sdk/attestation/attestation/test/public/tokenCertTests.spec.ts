@@ -9,7 +9,7 @@ chaiUse(chaiPromises);
 import { Recorder } from "@azure/test-utils-recorder";
 
 import { createRecordedClient, createRecorder } from "../utils/recordedClient";
-import { X509 } from "../../src/jsrsasign";
+//import { X509 } from "../../src/jsrsasign";
 import { encodeByteArray } from "../utils/base64url";
 import { AttestationClient } from "../../src";
 describe("TokenCertTests", function() {
@@ -52,7 +52,7 @@ describe("TokenCertTests", function() {
         pemCert += encodeByteArray(certBuffer);
         pemCert += "\r\n-----END CERTIFICATE-----\r\n";
 
-        const cert = new X509();
+        const cert = new jsrsasign.X509();
         cert.readCertPEM(pemCert);
       });
     }

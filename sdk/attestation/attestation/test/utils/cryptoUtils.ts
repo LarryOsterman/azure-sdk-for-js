@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import * as jsrsasign from "jsrsasign";
+//import * as jsrsasign from "jsrsasign";
 
 import { hexToByteArray } from "../../src/utils/base64";
 

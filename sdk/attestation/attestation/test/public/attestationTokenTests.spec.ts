@@ -15,7 +15,7 @@ import { bytesToString, stringToBytes } from "../../src/utils/utf8.browser";
 import { AttestationSigningKey, AttestationToken } from "../../src";
 import { createECDSKey, createRSAKey, createX509Certificate } from "../utils/cryptoUtils";
 import { encodeByteArray } from "../utils/base64url";
-import { X509 } from "../../src/jsrsasign";
+//import { X509 } from "../../src/jsrsasign";
 
 describe("AttestationTokenTests", function() {
   let recorder: Recorder;
@@ -116,10 +116,10 @@ describe("AttestationTokenTests", function() {
       pemCert += encodeByteArray(token.certificateChain.certificates[0]);
       pemCert += "\r\n-----END CERTIFICATE-----\r\n";
 
-      const expectedCert = new X509();
+      const expectedCert = new jsrsasign.X509();
       expectedCert.readCertPEM(cert);
 
-      const actualCert = new X509();
+      const actualCert = new jsrsasign.X509();
       actualCert.readCertPEM(pemCert);
 
       assert.equal(expectedCert.hex, actualCert.hex);

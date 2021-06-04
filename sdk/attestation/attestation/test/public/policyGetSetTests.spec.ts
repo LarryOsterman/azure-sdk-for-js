@@ -8,7 +8,7 @@ chaiUse(chaiPromises);
 
 import { Recorder } from "@azure/test-utils-recorder";
 
-import { X509 } from "../../src/jsrsasign";
+//import { X509 } from "../../src/jsrsasign";
 
 import {
   createRecordedAdminClient,
@@ -144,10 +144,10 @@ describe("PolicyGetSetTests ", function() {
         pemCert += encodeByteArray(policyResult.value.policySigner.certificates[0]);
         pemCert += "\r\n-----END CERTIFICATE-----\r\n";
 
-        const expectedCert = new X509();
+        const expectedCert = new jsrsasign.X509();
         expectedCert.readCertPEM(signer.certificate);
 
-        const actualCert = new X509();
+        const actualCert = new jsrsasign.X509();
         actualCert.readCertPEM(pemCert);
 
         // The signer in the response should match the signer we set in the request.
