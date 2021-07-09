@@ -246,9 +246,10 @@ describe("[AAD] Attestation Client", function() {
 
       // Confirm that the JWK response out of the service makes sense and contains
       // the JSON inside the binaryRuntimeData.
-      assert.isDefined(attestationResult.body.runtimeClaims.jwk);
-      assert.isDefined(attestationResult.body.runtimeClaims.jwk.crv);
-      expect(attestationResult.body.runtimeClaims.jwk.crv).is.equal("P-256");
+      const runtimeClaims = attestationResult.body.runtimeClaims as any;
+      assert.isDefined(runtimeClaims.jwk);
+      assert.isDefined(runtimeClaims.jwk.crv);
+      expect(runtimeClaims.jwk.crv).is.equal("P-256");
 
       assert(attestationResult.token, "Expected a token from the service but did not receive one");
     }
@@ -314,9 +315,10 @@ describe("[AAD] Attestation Client", function() {
 
       // Confirm that the JWK response out of the service makes sense and contains
       // the JSON inside the binaryRuntimeData.
-      assert.isDefined(attestationResult.body.runtimeClaims.jwk);
-      assert.isDefined(attestationResult.body.runtimeClaims.jwk.crv);
-      expect(attestationResult.body.runtimeClaims.jwk.crv).is.equal("P-256");
+      const runtimeClaims = attestationResult.body.runtimeClaims as any;
+      assert.isDefined(runtimeClaims.jwk);
+      assert.isDefined(runtimeClaims.jwk.crv);
+      expect(runtimeClaims.jwk.crv).is.equal("P-256");
 
       assert(attestationResult.token, "Expected a token from the service but did not receive one");
     }
